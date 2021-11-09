@@ -1,0 +1,32 @@
+import { Canvas, Story, Meta } from "@storybook/addon-docs";
+import { MyDialog } from "./Dialog";
+import { DialogStore, useDialogContext } from "./DialogStore";
+
+<Meta
+  title="Dialog"
+  component={MyDialog}
+  decorators={[
+    (Story) => (
+      <DialogStore initialValue={true}>
+        <Story />
+      </DialogStore>
+    ),
+  ]}
+/>
+
+# Dialog
+
+<Canvas>
+  <Story name="Dialog">
+    {() => {
+      const { setState } = useDialogContext();
+      const handleClick = () => setState(true);
+      return (
+        <div>
+          <button onClick={handleClick}>Open Dialog</button>
+          <MyDialog />
+        </div>
+      );
+    }}
+  </Story>
+</Canvas>
